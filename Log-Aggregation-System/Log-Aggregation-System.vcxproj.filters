@@ -18,5 +18,13 @@
     <ClCompile Include="Log-Aggregation-System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LogAggregator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LogAggregator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
