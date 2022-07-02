@@ -1,20 +1,35 @@
 // Log-Aggregation-System.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
+#include"LogAggregator.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    LogAggregator logAggregator = LogAggregator(3, 3);
+    logAggregator.pushLog(2322, 1, 1, "Machine 1 Service 1 Log 1");
+    logAggregator.pushLog(2312, 1, 1, "Machine 1 Service 1 Log 2");
+    logAggregator.pushLog(2352, 1, 1, "Machine 1 Service 1 Log 3");
+    logAggregator.pushLog(2298, 1, 1, "Machine 1 Service 1 Log 4");
+    logAggregator.pushLog(23221, 1, 2, "Machine 1 Service 2 Log 1");
+    logAggregator.pushLog(23121, 1, 2, "Machine 1 Service 2 Log 2");
+    logAggregator.pushLog(23222, 2, 2, "Machine 2 Service 2 Log 1");
+    logAggregator.pushLog(23122, 2, 2, "Machine 2 Service 2 Log 2");
+    logAggregator.pushLog(23521, 1, 2, "Machine 1 Service 2 Log 3");
+    logAggregator.pushLog(22981, 1, 2, "Machine 1 Service 2 Log 4");
+    logAggregator.pushLog(23522, 2, 2, "Machine 2 Service 2 Log 3");
+    logAggregator.pushLog(22982, 2, 2, "Machine 2 Service 2 Log 4");
+
+    logAggregator.getLogsFromMachine(2); // return [23222, 23122, 23522, 22982]
+                                         // Machine 2 added 4 logs, so we return them in the order
+                                         // they were added.
+    logAggregator.getLogsOfService(2);   // return [23221, 23121, 23222, 23122, 23521, 22981, 23522, 22982]
+                                         // 8 logs were added while running service 2 on a machine.
+    logAggregator.search(1, "Log 1");    // return ["Machine 1 Service 1 Log 1"]
+                                         // There is only one log that was added while running service 1
+                                         // and contains "Log 1".
+    logAggregator.search(2, "Log 3");    // return ["Machine 1 Service 2 Log 3", "Machine 2 Service 2 Log 3"]
+                                         // 2 logs were added while running service 2 that contain "Log 3".
+
+    return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
