@@ -2,10 +2,29 @@
 
 LogAggregator::LogAggregator(int machines, int services)
 {
+    this->machines = machines;
+    this->services = services;
 }
 
-int LogAggregator::pushLog(int logId, int machineId, int serviceId, std::string message)
+void LogAggregator::pushLog(int logId, int machineId, int serviceId, std::string message)
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    log.logId = logId;
+    log.machineId = machineId;
+    log.serviceId = serviceId;
+    log.message = message;
+}
+
+std::vector<int> LogAggregator::getLogsFromMachine(int machineId)
+{
+    return std::vector<int>();
+}
+
+std::vector<int> LogAggregator::getLogsOfService(int serviceId)
+{
+    return std::vector<int>();
+}
+
+std::vector<std::string> LogAggregator::search(int serviceId, std::string searchString)
+{
+    return std::vector<std::string>();
 }
